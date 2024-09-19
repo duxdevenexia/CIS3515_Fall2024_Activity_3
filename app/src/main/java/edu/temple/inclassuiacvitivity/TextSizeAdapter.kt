@@ -9,12 +9,11 @@ import android.widget.TextView
 
 
 
-class TextSizeAdapter(private val context: Context, private val numbers: Array<Int>) : BaseAdapter() {
+class TextSizeAdapter(_context: Context, _numbers: Array<Int>) : BaseAdapter() {
 
-    /*
-    // initial ary
-    private val ary: List<Int> = mutableListOf()
-     */
+    private val context = _context
+    private val numbers = _numbers
+
 
     override fun getCount(): Int {
 
@@ -28,16 +27,14 @@ class TextSizeAdapter(private val context: Context, private val numbers: Array<I
     override fun getItemId(position: Int): Long = numbers[position].toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        TODO("Not yet implemented")
-        val view: View = convertView ?: LayoutInflater.from(parent?.context)
-            .inflate(android.R.layout.simple_spinner_item, parent, false)
 
-        val item = getItem(position)
-
-        val textView = view
+        val textView = TextView(context)
+        textView.text = numbers[position].toString()
+        textView.textSize = 22f
+        textView.setPadding(5, 10, 0, 10)
 
 
-        return view
+        return textView
     }
 
 }
